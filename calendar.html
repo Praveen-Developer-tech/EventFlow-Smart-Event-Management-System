@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar View - EventHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>EventHub</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="create-event.html" class="nav-link">Create Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="view-events.html" class="nav-link">View Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="calendar.html" class="nav-link active">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="theme-toggle">
+                    <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="calendar-section">
+            <div class="container">
+                <div class="calendar-header">
+                    <h1 class="page-title">Calendar View</h1>
+                    <div class="calendar-controls">
+                        <button id="prevMonth" class="btn btn-secondary">‹ Previous</button>
+                        <h2 id="currentMonth" class="current-month"></h2>
+                        <button id="nextMonth" class="btn btn-secondary">Next ›</button>
+                    </div>
+                    <div class="view-toggle">
+                        <button id="monthView" class="btn btn-primary active">Month</button>
+                        <button id="weekView" class="btn btn-secondary">Week</button>
+                    </div>
+                </div>
+
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span class="legend-color work"></span>
+                        <span>Work</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color personal"></span>
+                        <span>Personal</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color social"></span>
+                        <span>Social</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color health"></span>
+                        <span>Health</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color education"></span>
+                        <span>Education</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color travel"></span>
+                        <span>Travel</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color other"></span>
+                        <span>Other</span>
+                    </div>
+                </div>
+
+                <div id="calendarContainer" class="calendar-container">
+                    <div id="monthViewContainer" class="month-view">
+                        <div class="calendar-grid">
+                            <div class="day-header">Sun</div>
+                            <div class="day-header">Mon</div>
+                            <div class="day-header">Tue</div>
+                            <div class="day-header">Wed</div>
+                            <div class="day-header">Thu</div>
+                            <div class="day-header">Fri</div>
+                            <div class="day-header">Sat</div>
+                        </div>
+                        <div id="calendarDays" class="calendar-days"></div>
+                    </div>
+
+                    <div id="weekViewContainer" class="week-view" style="display: none;">
+                        <div class="week-grid">
+                            <div class="time-column">
+                                <div class="time-slot">12 AM</div>
+                                <div class="time-slot">1 AM</div>
+                                <div class="time-slot">2 AM</div>
+                                <div class="time-slot">3 AM</div>
+                                <div class="time-slot">4 AM</div>
+                                <div class="time-slot">5 AM</div>
+                                <div class="time-slot">6 AM</div>
+                                <div class="time-slot">7 AM</div>
+                                <div class="time-slot">8 AM</div>
+                                <div class="time-slot">9 AM</div>
+                                <div class="time-slot">10 AM</div>
+                                <div class="time-slot">11 AM</div>
+                                <div class="time-slot">12 PM</div>
+                                <div class="time-slot">1 PM</div>
+                                <div class="time-slot">2 PM</div>
+                                <div class="time-slot">3 PM</div>
+                                <div class="time-slot">4 PM</div>
+                                <div class="time-slot">5 PM</div>
+                                <div class="time-slot">6 PM</div>
+                                <div class="time-slot">7 PM</div>
+                                <div class="time-slot">8 PM</div>
+                                <div class="time-slot">9 PM</div>
+                                <div class="time-slot">10 PM</div>
+                                <div class="time-slot">11 PM</div>
+                            </div>
+                            <div id="weekDays" class="week-days"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EventHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Event Details Modal -->
+    <div id="eventDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="eventDetailsContent"></div>
+            <div class="modal-buttons">
+                <button id="editEventBtn" class="btn btn-primary">Edit Event</button>
+                <button id="deleteEventBtn" class="btn btn-danger">Delete Event</button>
+                <button class="btn btn-secondary" onclick="closeEventDetailsModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
