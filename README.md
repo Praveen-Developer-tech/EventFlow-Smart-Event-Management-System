@@ -76,6 +76,7 @@ View events in list or calendar format
 👨‍💻 Author
 
 Praveen Halle
+software tech
 
 GitHub: https://github.com/Praveen-Developer-tech
 
